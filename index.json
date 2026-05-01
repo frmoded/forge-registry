@@ -4,11 +4,15 @@
     "forge-core": {
       "description": "Forge bootstrap demo vault.",
       "homepage": "https://github.com/frmoded/forge-core",
-      "latest": "0.1.0",
+      "latest": "0.2.0",
       "versions": {
         "0.1.0": {
           "tarball": "https://github.com/frmoded/forge-core/archive/refs/tags/v0.1.0.tar.gz",
           "sha256": "d07cf9bf3b36d435b9e3ae4dc8ea59768fea773c86d5ae3020bf7dcdb664a225"
+        },
+        "0.2.0": {
+          "tarball": "https://github.com/frmoded/forge-core/archive/refs/tags/v0.2.0.tar.gz",
+          "sha256": "bfa6677f23e846c68541bd278e4225e767ee2325f30dd2ee5a4a677015cea6fd"
         }
       }
     }
