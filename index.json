@@ -16,6 +16,17 @@
         }
       }
     },
+    "forge-music": {
+      "description": "Forge vault for music composition and analysis.",
+      "homepage": "https://github.com/frmoded/forge-music",
+      "latest": "0.2.0",
+      "versions": {
+        "0.2.0": {
+          "tarball": "https://github.com/frmoded/forge-music/archive/refs/tags/v0.2.0.tar.gz",
+          "sha256": "0b073fdbfd90fe4248040bf7110f181459375930d8c1c4c4319018d44aac32d8"
+        }
+      }
+    },
     "forge-moda": {
       "description": "Forge vault for agent-based simulation modeling, starting with diffusion.",
       "homepage": "https://github.com/frmoded/forge-moda",
