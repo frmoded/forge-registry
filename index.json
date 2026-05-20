@@ -4,7 +4,7 @@
     "forge-core": {
       "description": "Forge bootstrap demo vault.",
       "homepage": "https://github.com/frmoded/forge-core",
-      "latest": "0.2.0",
+      "latest": "0.1.1",
       "versions": {
         "0.1.0": {
           "tarball": "https://github.com/frmoded/forge-core/archive/refs/tags/v0.1.0.tar.gz",
@@ -13,17 +13,25 @@
         "0.2.0": {
           "tarball": "https://github.com/frmoded/forge-core/archive/refs/tags/v0.2.0.tar.gz",
           "sha256": "bfa6677f23e846c68541bd278e4225e767ee2325f30dd2ee5a4a677015cea6fd"
+        },
+        "0.1.1": {
+          "tarball": "https://github.com/frmoded/forge-core/archive/refs/tags/v0.1.1.tar.gz",
+          "sha256": "2d93c1d03b1fdd32965704d46940e923d5ce4dabe19def55e89d30427c86936b"
         }
       }
     },
     "forge-music": {
       "description": "Forge vault for music composition and analysis.",
       "homepage": "https://github.com/frmoded/forge-music",
-      "latest": "0.2.0",
+      "latest": "0.2.1",
       "versions": {
         "0.2.0": {
           "tarball": "https://github.com/frmoded/forge-music/archive/refs/tags/v0.2.0.tar.gz",
           "sha256": "0b073fdbfd90fe4248040bf7110f181459375930d8c1c4c4319018d44aac32d8"
+        },
+        "0.2.1": {
+          "tarball": "https://github.com/frmoded/forge-music/archive/refs/tags/v0.2.1.tar.gz",
+          "sha256": "5ba52864beacb99fa9904ca4eadb4ab8f3f213f86e14ad5ad9f54ed6daafaea1"
         }
       }
     },
