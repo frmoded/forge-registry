@@ -38,7 +38,7 @@
     "forge-moda": {
       "description": "Forge vault for agent-based simulation modeling, starting with diffusion.",
       "homepage": "https://github.com/frmoded/forge-moda",
-      "latest": "0.4.6",
+      "latest": "0.4.8",
       "versions": {
         "0.1.9": {
           "tarball": "https://github.com/frmoded/forge-moda/archive/refs/tags/v0.1.9.tar.gz",
@@ -63,6 +63,10 @@
         "0.4.6": {
           "tarball": "https://github.com/frmoded/forge-moda/archive/refs/tags/v0.4.6.tar.gz",
           "sha256": "c444e02bd58fdc71e5e08bea291873cb82ab08ff407a0e7703ec12a2c434293f"
+        },
+        "0.4.8": {
+          "tarball": "https://github.com/frmoded/forge-moda/archive/refs/tags/v0.4.8.tar.gz",
+          "sha256": "2e67df16ab0cbeee3daf014211c380c9d197f1428d9bed748cecd312acb8093a"
         }
       }
     }
