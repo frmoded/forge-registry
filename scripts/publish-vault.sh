@@ -19,6 +19,14 @@
 #
 # Convention: every published version becomes `latest`. Non-latest backports
 # require a manual edit of index.json.
+#
+# Pre-bump detection: the author may have already bumped `forge.toml`'s
+# version in their source commit (e.g. 0.4.10 → 0.4.11). The script
+# detects this by comparing the current vault version to the registry's
+# `latest` for that vault; when they differ, the script honors the
+# author's version and tags the existing HEAD directly (no phantom
+# "Release v…" commit on top of the author's source commit). When the
+# vault is in sync with the registry, auto-patch-bump runs as before.
 
 set -euo pipefail
 
@@ -152,7 +160,7 @@ publish_one() {
     return 1
   fi
 
-  local current_version new_version
+  local current_version new_version registry_latest
   current_version=$(read_vault_version "$vault_dir")
   if [ -z "$current_version" ]; then
     echo "ERROR: could not read version from ${vault_dir}/forge.toml"
@@ -160,8 +168,16 @@ publish_one() {
   fi
   echo "Current version: $current_version"
 
+  # Look up what the registry thinks is latest for this vault. Empty
+  # string when the vault key doesn't exist yet (fresh registration).
+  registry_latest=$(jq -r --arg n "$vault_name" '.vaults[$n].latest // ""' "$INDEX_JSON")
+
   if [ -n "$explicit_version" ]; then
     new_version="$explicit_version"
+  elif [ -n "$registry_latest" ] && [ "$current_version" != "$registry_latest" ]; then
+    # Author pre-bumped forge.toml in the source commit. Honor it —
+    # don't add a second "Release v…" commit on top of their work.
+    new_version="$current_version"
   else
     new_version=$(bump_patch "$current_version")
   fi
@@ -171,19 +187,30 @@ publish_one() {
     echo "ERROR: version '$new_version' is not semver (X.Y.Z)."
     return 1
   fi
-  if [ "$new_version" = "$current_version" ]; then
-    echo "ERROR: new version equals current ($current_version). Bump it."
+  # Only error on equality when the user passed an explicit version that
+  # matches current — in the auto-detect pre-bump case the equality is
+  # the legitimate signal "publish this version as-is, no bump."
+  if [ -n "$explicit_version" ] && [ "$new_version" = "$current_version" ]; then
+    echo "ERROR: explicit version equals current ($current_version). Bump it."
     return 1
   fi
 
-  # --- Bump forge.toml, commit, tag, push ---
-  echo "Bumping ${vault_name}/forge.toml..."
-  write_vault_version "$vault_dir" "$new_version"
+  # --- Bump forge.toml + commit (only if a bump actually happened) ---
+  if [ "$new_version" != "$current_version" ]; then
+    echo "Bumping ${vault_name}/forge.toml..."
+    write_vault_version "$vault_dir" "$new_version"
+    (
+      cd "$vault_dir"
+      git add forge.toml
+      git commit -m "Release v${new_version}"
+    )
+  else
+    echo "Author pre-bumped to ${new_version}; tagging existing HEAD."
+  fi
 
+  # --- Tag + push (runs regardless of whether a fresh commit landed) ---
   (
     cd "$vault_dir"
-    git add forge.toml
-    git commit -m "Release v${new_version}"
     git tag -a "v${new_version}" -m "Release v${new_version}"
     git push origin main
     git push origin "v${new_version}"
