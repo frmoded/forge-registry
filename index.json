@@ -23,7 +23,7 @@
     "forge-music": {
       "description": "Forge vault for music composition and analysis.",
       "homepage": "https://github.com/frmoded/forge-music",
-      "latest": "0.2.1",
+      "latest": "0.3.0",
       "versions": {
         "0.2.0": {
           "tarball": "https://github.com/frmoded/forge-music/archive/refs/tags/v0.2.0.tar.gz",
@@ -32,6 +32,10 @@
         "0.2.1": {
           "tarball": "https://github.com/frmoded/forge-music/archive/refs/tags/v0.2.1.tar.gz",
           "sha256": "5ba52864beacb99fa9904ca4eadb4ab8f3f213f86e14ad5ad9f54ed6daafaea1"
+        },
+        "0.3.0": {
+          "tarball": "https://github.com/frmoded/forge-music/archive/refs/tags/v0.3.0.tar.gz",
+          "sha256": "da3a073163caf3274676099650afd78b03f429133ea2922aeb8817b555d3e0e1"
         }
       }
     },
